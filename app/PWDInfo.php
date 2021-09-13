@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class PWDInfo extends Model
@@ -58,4 +59,13 @@ class PWDInfo extends Model
         return $this->hasMany(PWDDisability::class);
     }
 
+    public function getFullNamePWD(){
+        return $this-> lname . ',' . $this-> fname .' '. $this->mname;
+    }
+
+    public function getAge(){
+
+        return Carbon::parse($this->attributes['b_day'])->age;
+
+    }
 }

@@ -22,7 +22,7 @@ class PWDController extends Controller
     }
 
     public function show($id){
-        $pwdinfo = PWDInfo::get()->where('id', $id)->first();
+        $pwdinfo = PWDInfo::where('id', $id)->firstOrFail();
         return view('pwd.show', compact('pwdinfo'));
     }
 
@@ -38,6 +38,16 @@ class PWDController extends Controller
 
     public function store(Request $request)
     {
+
+        $request -> validate([
+            "mobile_num" => "required|digits:11",
+            "sss_num" => "required|digits:10",
+            "phealth_num" => "required|digits:12",
+            "reg_num" => "required|digits:12",
+            "lname" => "required|min:2",
+            "fname" => "required|min:2",
+            "mname" => "required|min:2",
+        ]);
         $pwdinfo = new PWDInfo();
 
         $pwdinfo-> lname = $request->input('lname');
@@ -62,9 +72,14 @@ class PWDController extends Controller
 
         if ($request->hasFile('pwd_img'))
         {
+            // $file = $request->file('pwd_img');
+            // $filename = $file->getClientOriginalName();
+            // $request->pwd_img->storeAs('pwd_images', $filename, 'public');
+            // $pwdinfo->pwd_img = $filename;
+
             $file = $request->file('pwd_img');
             $filename = $file->getClientOriginalName();
-            $request->pwd_img->storeAs('pwd_images', $filename, 'public');
+            $file->move('uploads/pwd_images/', $filename);
             $pwdinfo->pwd_img = $filename;
         }
 
@@ -72,14 +87,14 @@ class PWDController extends Controller
         {
             $file = $request->file('pwd_file');
             $filename = $file->getClientOriginalName();
-            $request->pwd_file->storeAs('pwd_files', $filename, 'public');
+            $file->move('uploads/pwd_files/', $filename);
             $pwdinfo->pwd_file = $filename;
         }
         // dd($pwdinfo);
         $pwdinfo->save();
 
 
-        return redirect()->route('home');
+        return redirect()->route('pwd.home');
     }
 
     public function edit($id){
@@ -120,7 +135,8 @@ class PWDController extends Controller
         {
                 $file = $request->file('pwd_img');
                 $filename = $file->getClientOriginalName();
-                $request->pwd_img->storeAs('pwd_images', $filename, 'public');
+                $file->move('uploads/pwd_images/', $filename);
+                // $request->pwd_img->storeAs('pwd_images', $filename, 'public');
                 //File::delete(public_path('/storage/pwd_images/'.$pwdinfo->pwd_img));
                 $pwdinfo->pwd_img = $filename;
 
@@ -129,7 +145,8 @@ class PWDController extends Controller
         {
                 $file = $request->file('pwd_file');
                 $filename = $file->getClientOriginalName();
-                $request->pwd_file->storeAs('pwd_files', $filename, 'public');
+                $file->move('uploads/pwd_files/', $filename);
+                // $request->pwd_file->storeAs('pwd_files', $filename, 'public');
                 //File::delete(public_path('/storage/pwd_files/'.$pwdinfo->pwd_file));
                 $pwdinfo->pwd_file = $filename;
         }
@@ -144,20 +161,20 @@ class PWDController extends Controller
     public function destroy($id)
     {
         $pwdinfo = PWDInfo::findOrFail($id);
-        if(\File::exists(public_path().'/storage/pwd_images/'.$pwdinfo->pwd_img)){
-            \File::delete(public_path().'/storage/pwd_images/'.$pwdinfo->pwd_img);
+        if(\File::exists(public_path().'/uploads/pwd_images/'.$pwdinfo->pwd_img)){
+            \File::delete(public_path().'/uploads/pwd_images/'.$pwdinfo->pwd_img);
         }
-        if(\File::exists(public_path().'/storage/pwd_files/'.$pwdinfo->pwd_file)){
-            \File::delete(public_path().'/storage/pwd_files/'.$pwdinfo->pwd_file);
+        if(\File::exists(public_path().'/uploads/pwd_files/'.$pwdinfo->pwd_file)){
+            \File::delete(public_path().'/uploads/pwd_files/'.$pwdinfo->pwd_file);
         }
         $pwdinfo->delete();
-        return redirect()->route('pwd.search')->withStatus(_('Information Deleted'));
+        return redirect()->route('pwd.search');
     }
 
 
     public function download($id){
         $pwdMedicalFile = PWDInfo::where('id', '=', $id)->first();
-        return response()->download(public_path("/storage/pwd_files/{$pwdMedicalFile->pwd_file}"));
+        return response()->download(public_path("/uploads/pwd_files/{$pwdMedicalFile->pwd_file}"));
     }
 
 

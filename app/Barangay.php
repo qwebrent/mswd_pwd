@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\PWDInfo;
+Use App\Senior;
 
 class Barangay extends Model
 {
@@ -12,5 +13,9 @@ class Barangay extends Model
 
     public function pwdinfos(){
         return $this->hasMany(PWDInfo::class);
+    }
+
+    public function seniorinfos(){
+        return $this->hasMany(Senior::class);
     }
 }

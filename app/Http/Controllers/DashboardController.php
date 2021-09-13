@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Gender;
+use App\Senior;
 use App\PWDInfo;
 use App\Barangay;
+Use Carbon\Carbon;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class DashboardController extends Controller
@@ -14,7 +16,6 @@ class DashboardController extends Controller
     {
         $maleCount = PWDInfo::where('gender_id', 1)->count();
         $femaleCount = PWDInfo::where('gender_id', 2)->count();
-
 
             $chart = (new LarapexChart)->barChart()
             ->setTitle('Number of PWD per Barangay')
@@ -37,13 +38,25 @@ class DashboardController extends Controller
             ->addData('San Isidro',[\App\PWDInfo::where('barangay_id',17)->count()])
             ->addData('Santo Tomas',[\App\PWDInfo::where('barangay_id',18)->count()])
 
-
-
             ->setXAxis(['Barangay']);
 
             // ->setLabels(['Balayhangin', 'Bangyas', 'Dayap ', 'Dayap II', 'Hanggan', 'Imok', 'Lamot 1', 'Lamot 2',
             // 'Limao', 'Mabacan', 'Masiit', 'Paliparan', 'Perez', 'Prinza', 'Kanluran', 'Silangan', 'San Isidro', 'Santo Tomas']);
 
-        return view('dashboard', compact('chart', 'maleCount', 'femaleCount'));
+        return view('pwd_dash', compact('chart', 'maleCount', 'femaleCount'));
     }
+
+    public function senior(){
+
+        $smaleCount = Senior::where('gender_id', 1)->count();
+        $sfemaleCount = Senior::where('gender_id', 2)->count();
+
+        $seniorbday = Senior::whereMonth('b_day', '=', Carbon::today()->format('m'))->whereDay('b_day', '=', Carbon::today()->format('d'))->get();
+
+        //dd($seniorbday);
+
+        return view('seniors_dash', compact('seniorbday', 'smaleCount', 'sfemaleCount'));
+    }
+
+
 }

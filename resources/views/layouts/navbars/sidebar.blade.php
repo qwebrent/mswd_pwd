@@ -80,17 +80,22 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Home') }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                    <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="ni ni-briefcase-24" style="color: #f4645f;"></i>
                         <span class="nav-link-text" style="color: #f4645f;">{{ __('PWD Management') }}</span>
                     </a>
 
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pwd.home') }}">
+                                    {{ __('View Dashboard') }}
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('pwd.create') }}">
                                     {{ __('New Entry') }}
@@ -99,6 +104,43 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('pwd.search') }}">
                                     {{ __('Search') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                        <i class="ni ni-briefcase-24" style="color: #464898;"></i>
+                        <span class="nav-link-text" style="color: #464898;">{{ __('Seniors Management') }}</span>
+                    </a>
+
+                    <div class="collapse show" id="navbar-examples">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('senior.home') }}">
+                                    {{ __('View Dashboard') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('senior.create') }}">
+                                    {{ __('New Entry') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('senior.search') }}">
+                                    {{ __('Search') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('senior.import') }}">
+                                    {{ __('Import (Excel)') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('senior.showDeceased') }}">
+                                    {{ __('Deceased Seniors') }}
                                 </a>
                             </li>
                         </ul>

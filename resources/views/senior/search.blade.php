@@ -14,7 +14,7 @@
 @section('content')
     @include('users.partials.search-header', [
         'title' => __('View/Search'),
-        'description' => __('This is where you search for all saved informations about PWD\'s'),
+        'description' => __('This is where you search for all saved informations about Seniors'),
         'class' => 'col-lg-7'
     ])
 
@@ -30,10 +30,10 @@
 
 
 <div class="container-fluid mt--7">
-    <div class="row">
-        <div class="col-12">
-            <div class="card bg-secondary shadow">
-                <div class="card-header bg-white border-0">
+<div class="row">
+    <div class="col-12">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
     <div class="table-responsive py-4">
         <table class="table table-sm" style="width: 100%" id="pwdtable">
         <thead class="thead-light">
@@ -41,20 +41,23 @@
                 <th>ID</th>
                 <th>Full Name</th>
                 <th>Address</th>
-                <th>Birth Date</th>
                 <th>ID No.</th>
-                <th>Type of Disability</th>
+                <th>Status</th>
                 <th>Option</th>
             </tr>
         </thead>
         <tbody class="font-weight-bold">
-            @foreach ($pwdinfos as $pwdinfo)
+            @foreach ($seniorinfos as $seniorinfo)
             <tr>
-                <td>{{ $pwdinfo -> id }}</td>
-                <td>{{ $pwdinfo -> getFullNamePWD() }}</td>
-                <td>Brgy. {{ $pwdinfo -> barangay -> barangay }} {{ $pwdinfo -> municipality }}, {{ $pwdinfo -> province }}</td>
-                <td>{{ $pwdinfo -> b_day }}</td>
-                <td>{{ $pwdinfo -> reg_num }}</td>
+                <td>{{ $seniorinfo -> id}}</td>
+                <td>{{ $seniorinfo -> lname }}, {{ $seniorinfo -> fname }} {{ $seniorinfo -> mname }}</td>
+                <td>Brgy. {{ $seniorinfo -> barangay -> barangay }} {{ $seniorinfo -> municipality }}, {{ $seniorinfo -> province }}</td>
+                <td>{{ $seniorinfo -> reg_num }}</td>
+                <td>@if ($seniorinfo -> status == 1)
+                    <button class="btn btn-success btn-sm disabled">Pensioner</button>
+                @else
+                <button class="btn btn-danger btn-sm disabled">w/o Pension</button>
+                @endif</td>
 
                 {{-- <td class="dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -65,16 +68,7 @@
                 </td> --}}
 
                 <td>
-                    <ul>
-                        @foreach ($pwdinfo -> disability_name as $disability)
-                        <li>{{ $disability }}</li>
-                        @endforeach
-                    </ul>
-                </td>
-
-
-                <td>
-                    <a class="btn btn-sm btn-primary" href="{{ route('pwd.show', $pwdinfo->id) }}">View</a>
+                    <a class="btn btn-sm btn-primary" href="{{ route('senior.show', $seniorinfo->id) }}">View</a>
                 </td>
             </tr>
             @endforeach
@@ -92,8 +86,12 @@
     </table>
 </div>
 
+</div>
 
-
+        </div>
+    </div>
+</div>
+</div>
 
 @endsection
 
@@ -114,7 +112,5 @@
     <script src="{{ url('https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js') }}"></script>
 
 
-
-
-    <script src="{{asset('/js/export.js')}}"></script>
+    <script src="{{asset('/js/filter.js')}}"></script>
 @endsection

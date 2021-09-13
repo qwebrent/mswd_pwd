@@ -8,7 +8,7 @@
         'description' => __('This is where you enter all of the information related to Person with Disabilities'),
         'class' => 'col-lg-7'
     ])
-<form method="post" action="{{ route('pwd.update', $pwdinfo->id) }}" autocomplete="off" enctype="multipart/form-data">
+<form method="post" action="{{ route('senior.update', $seniorinfo->id) }}" autocomplete="off" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -19,11 +19,11 @@
                     <div class="row justify-content-center">
                                 <div class="avatar-upload">
                                     <div class="avatar-edit">
-                                        <input type="file" id="imageUpload" name="pwd_img" accept=".png, .jpg, .jpeg" value="{{ $pwdinfo -> pwd_img }}"/>
+                                        <input type="file" id="imageUpload" name="senior_img" accept=".png, .jpg, .jpeg" value="{{ $seniorinfo -> senior_img }}"/>
                                         <label for="imageUpload"></label>
                                     </div>
                                     <div class="avatar-preview">
-                                        <div id="imagePreview" style="background-image: url('{{ asset('/uploads/pwd_images/'. $pwdinfo->pwd_img) }}');">
+                                        <div id="imagePreview" style="background-image: url('{{ asset('/uploads/senior_images/'. $seniorinfo->senior_img) }}');">
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
 
                         <div class="text-center">
                             <h3>
-                                Upload Photo<span class="font-weight-light"></span>
+                                {{ __('Upload Photo') }}<span class="font-weight-light"></span>
                             </h3>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('lname') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Last Name') }}</label>
-                                            <input type="text" name="lname" id="input-name" class="form-control form-control-alternative{{ $errors->has('lname') ? ' is-invalid' : '' }}" placeholder="{{ __('Last Name') }}" value="{{ $pwdinfo -> lname }}" required autofocus>
+                                            <input type="text" name="lname" id="input-name" class="form-control form-control-alternative{{ $errors->has('lname') ? ' is-invalid' : '' }}" placeholder="{{ __('Last Name') }}" value="{{ $seniorinfo -> lname }}" required autofocus>
 
                                             @if ($errors->has('lname'))
                                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('fname') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('First Name') }}</label>
-                                            <input type="text" name="fname" id="input-name" class="form-control form-control-alternative{{ $errors->has('fname') ? ' is-invalid' : '' }}" placeholder="{{ __('First Name') }}" value="{{ $pwdinfo -> fname }}" required autofocus>
+                                            <input type="text" name="fname" id="input-name" class="form-control form-control-alternative{{ $errors->has('fname') ? ' is-invalid' : '' }}" placeholder="{{ __('First Name') }}" value="{{ $seniorinfo -> fname }}" required autofocus>
 
                                             @if ($errors->has('fname'))
                                                 <span class="invalid-feedback" role="alert">
@@ -90,7 +90,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('mname') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Middle Name') }}</label>
-                                            <input type="text" name="mname" id="input-name" class="form-control form-control-alternative{{ $errors->has('mname') ? ' is-invalid' : '' }}" placeholder="{{ __('Middle Name') }}" value="{{ $pwdinfo -> mname }}" required autofocus>
+                                            <input type="text" name="mname" id="input-name" class="form-control form-control-alternative{{ $errors->has('mname') ? ' is-invalid' : '' }}" placeholder="{{ __('Middle Name') }}" value="{{ $seniorinfo -> mname }}" required autofocus>
 
                                             @if ($errors->has('mname'))
                                                 <span class="invalid-feedback" role="alert">
@@ -105,7 +105,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('reg_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Identification Number') }}</label>
-                                            <input type="text" name="reg_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('reg_num') ? ' is-invalid' : '' }}" placeholder="{{ __('ID No.') }}" value="{{ $pwdinfo -> reg_num }}" required autofocus>
+                                            <input type="text" name="reg_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('reg_num') ? ' is-invalid' : '' }}" placeholder="{{ __('ID No.') }}" value="{{ $seniorinfo -> reg_num }}" required autofocus>
 
                                             @if ($errors->has('reg_num'))
                                                 <span class="invalid-feedback" role="alert">
@@ -116,26 +116,26 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <div class="form-group{{ $errors->has('sss_num') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-name">{{ __('SSS or GSIS Number') }}</label>
-                                            <input type="text" name="sss_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('sss_num') ? ' is-invalid' : '' }}" placeholder="{{ __('SSS or GSIS No.') }}" value="{{ $pwdinfo -> sss_num }}" required autofocus>
+                                        <div class="form-group{{ $errors->has('weight') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Weight (kg)') }}</label>
+                                            <input type="text" name="weight" id="input-name" class="form-control form-control-alternative{{ $errors->has('weight') ? ' is-invalid' : '' }}" placeholder="{{ __('kg') }}" value="{{ $seniorinfo -> weight }}" required autofocus>
 
-                                            @if ($errors->has('sss_num'))
+                                            @if ($errors->has('weight'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('sss_num') }}</strong>
+                                                    <strong>{{ $errors->first('weight') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
-                                        <div class="form-group{{ $errors->has('phealth_num') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-name">{{ __('Phil Health Number') }}</label>
-                                            <input type="text" name="phealth_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('phealth_num') ? ' is-invalid' : '' }}" placeholder="{{ __('Phil Health No.') }}" value="{{ $pwdinfo -> phealth_num }}" required autofocus>
+                                        <div class="form-group{{ $errors->has('height') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Height') }}</label>
+                                            <input type="text" name="height" id="input-name" class="form-control form-control-alternative{{ $errors->has('height') ? ' is-invalid' : '' }}" placeholder="{{ __('cm') }}" value="{{ $seniorinfo -> height }}" required autofocus>
 
-                                            @if ($errors->has('phealth_num'))
+                                            @if ($errors->has('height'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('phealth_num') }}</strong>
+                                                    <strong>{{ $errors->first('height') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -146,7 +146,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('b_day') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Birthdate') }}</label>
-                                            <input type="date" name="b_day" id="input-name" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ $pwdinfo -> b_day }}" required autofocus>
+                                            <input type="date" name="b_day" id="input-name" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ $seniorinfo -> b_day }}" required autofocus>
 
                                             @if ($errors->has('b_day'))
                                                 <span class="invalid-feedback" role="alert">
@@ -161,10 +161,10 @@
                                             <label class="form-control-label" for="input-name">{{ __('Gender') }}</label>
                                             <select class="form-control form-control-alternative" name="gender_id" id="gender_id">
                                                 <option value="" selected disabled>Select</option>
-                                                @foreach ($pwd_gender as $pwdgender)
-                                                <option value="{{ $pwdgender->id }}" {{ ($pwdgender->id == old('gender_id',
-                                                $pwdinfo->gender_id)) ? 'selected' : ''}}>{{ $pwdgender->gender }}</option>
-                                            @endforeach
+                                                @foreach ($senior_gender as $seniorgender)
+                                                    <option value="{{ $seniorgender->id }}" {{ ($seniorgender->id == old('gender_id',
+                                                    $seniorinfo->gender_id)) ? 'selected' : '' }}>{{ $seniorgender->gender }}</option>
+                                                @endforeach
 
                                             </select>
                                         </div>
@@ -177,7 +177,7 @@
                                                 <option value="" selected disabled>Select</option>
                                                 @foreach ($civil_status as $civstatus)
                                                 <option value="{{ $civstatus->id }}" {{ ($civstatus->id == old('civstatus_id',
-                                                $pwdinfo->civstatus_id)) ? 'selected' : '' }}>{{ $civstatus->civil_status }}</option>
+                                                $seniorinfo->civstatus_id)) ? 'selected' : '' }}>{{ $civstatus->civil_status }}</option>
                                                 @endforeach
 
                                             </select>
@@ -186,24 +186,23 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="form-group{{ $errors->has('educbg_id') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Educational Background') }}</label>
                                             <select class="form-control form-control-alternative" name="educbg_id" id="educbg_id">
-                                                <option value="" selected disabled>Select</option>
+
                                                 @foreach ($educ_bg as $educbg)
-                                                <option value="{{$educbg->id}}" {{ ($educbg->id == old('educbg_id',
-                                                $pwdinfo->educbg_id)) ? 'selected' : '' }}>{{ $educbg->educ_bg }}</option>
+                                                    <option value="{{$educbg->id}}">{{ $educbg->educ_bg }}</option>
                                                 @endforeach
 
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('mobile_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Mobile Number') }}</label>
-                                            <input type="text" name="mobile_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('mobile_num') ? ' is-invalid' : '' }}" placeholder="Mobile No." value="{{ $pwdinfo -> mobile_num }}" required autofocus>
+                                            <input type="text" name="mobile_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('mobile_num') ? ' is-invalid' : '' }}" placeholder="Mobile No." value="{{ $seniorinfo -> mobile_num }}" required autofocus>
 
                                             @if ($errors->has('mobile_num'))
                                                 <span class="invalid-feedback" role="alert">
@@ -212,38 +211,44 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div id="dynamic-field-1" class="form-group dynamic-field">
-                                                <label class="form-control-label" for="field">{{ __('Type of Disability')}}</label><span class="small text-muted">    (Physical, Mental Health, Visual, Hearing, Intellectual, Learning)</span>
-                                                {{-- <input type="text" id="field" class="form-control form-control-alternative" name="field[]" /> --}}
-                                                {{-- <select class="form-control form-control-alternative" name="disability_name[]" id="field">
-                                                    @foreach ($pwd_disabilities as $pwddisability)
-                                                        <option value="{{$pwddisability->pwd_disability}}">{{ $pwddisability->pwd_disability }}</option>
-                                                    @endforeach
-                                                </select> --}}
-                                                <div class="row">
-                                                @foreach ($pwdinfo -> disability_name as $disability)
-                                                @csrf
-                                                {{-- <li class="col-md-12 font-weight-normal">{{ $disabilities->disability_name }}</li> --}}
-                                                <div class="col-md-6 mb-2">
-                                                <input type="text" class="form-control form-control-alternative" name="disability_name[]" value="{{ $disability }}">
-                                                </div>
-                                                @endforeach
-                                            </div>
-                                            </div>
-                                            {{-- <div class="mt-4">
-                                                <button type="button" id="add-button" class="btn btn-primary float-left text-uppercase shadow-sm"><i class="fas fa-plus fa-fw"></i> Add</button>
-                                                <button type="button" id="remove-button" class="btn btn-danger float-left text-uppercase ml-1" disabled="disabled"><i class="fas fa-minus fa-fw"></i> Remove</button>
-                                            </div> --}}
+                                    <div class="col-md-4">
+                                        <div class="form-group{{ $errors->has('senior_illness') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Illness') }}</label>
+                                            <input type="text" name="senior_illness" id="input-name" class="form-control form-control-alternative{{ $errors->has('senior_illness') ? ' is-invalid' : '' }}" placeholder="Illness" value="{{ $seniorinfo -> senior_illness }}" required autofocus>
+
+                                            @if ($errors->has('senior_illness'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('senior_illness') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
 
+                                {{-- <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div id="dynamic-field-1" class="form-group dynamic-field">
+                                                <label class="form-control-label" for="field">{{ __('Type of Disability #1')}}</label>
+                                                    <select class="form-control form-control-alternative" name="disability_name[]" id="field">
+                                                        @foreach ($pwd_disabilities as $pwddisability)
+                                                            <option value="{{$pwddisability->pwd_disability}}">{{ $pwddisability->pwd_disability }}</option>
+                                                        @endforeach
+                                                    </select>
+
+
+                                            </div>
+                                            <div class="mt-4">
+                                                <button type="button" id="add-button" class="btn btn-primary float-left text-uppercase shadow-sm"><i class="fas fa-plus fa-fw"></i> Add</button>
+                                                <button type="button" id="remove-button" class="btn btn-danger float-left text-uppercase ml-1" disabled="disabled"><i class="fas fa-minus fa-fw"></i> Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
                                 <hr class="my-4" />
+
                                 <h6 class="heading-small text-muted mb-4">{{ __('Address') }}</h6>
 
 
@@ -251,7 +256,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group{{ $errors->has('street_address') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-name">{{ __('House No. Street') }}</label>
-                                                <input type="text" name="street_address" id="input-name" class="form-control form-control-alternative{{ $errors->has('street_address') ? ' is-invalid' : '' }}" placeholder="{{ __('1234 Main St.') }}" value="{{ $pwdinfo -> street_address }}" required autofocus>
+                                                <input type="text" name="street_address" id="input-name" class="form-control form-control-alternative{{ $errors->has('street_address') ? ' is-invalid' : '' }}" placeholder="{{ __('1234 Main St.') }}" value="{{ $seniorinfo -> street_address }}" required autofocus>
 
                                                 @if ($errors->has('street_address'))
                                                     <span class="invalid-feedback" role="alert">
@@ -265,11 +270,12 @@
                                             <div class="form-group{{ $errors->has('barangay_id') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-name">{{ __('Barangay') }}</label>
                                                 <select class="form-control form-control-alternative" name="barangay_id" id="barangay_id">
-                                                        <option value="" selected disabled>Select</option>
-                                                        @foreach ($barangays as $barangay)
-                                                        <option value="{{$barangay->id}}" {{ ($barangay->id == old('barangay_id',
-                                                        $pwdinfo->barangay_id)) ? 'selected' : '' }}>{{ $barangay->barangay }}</option>
-                                                        @endforeach
+
+                                                    <option value="" selected disabled>Select</option>
+                                                    @foreach ($barangays as $barangay)
+                                                    <option value="{{$barangay->id}}" {{ ($barangay->id == old('barangay_id',
+                                                    $seniorinfo->barangay_id)) ? 'selected' : '' }}>{{ $barangay->barangay }}</option>
+                                                    @endforeach
 
                                                 </select>
                                             </div>
@@ -278,7 +284,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group{{ $errors->has('municipality') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-name">{{ __('Municipality') }}</label>
-                                                <input type="text" name="municipality" id="input-name" class="form-control form-control-alternative{{ $errors->has('municipality') ? ' is-invalid' : '' }}" placeholder="{{ __('Municipality') }}" value="{{ $pwdinfo -> municipality }}" required autofocus>
+                                                <input type="text" name="municipality" id="input-name" class="form-control form-control-alternative{{ $errors->has('municipality') ? ' is-invalid' : '' }}" placeholder="{{ __('Municipality') }}" value="{{ $seniorinfo -> municipality }}" readonly>
 
                                                 @if ($errors->has('municipality'))
                                                     <span class="invalid-feedback" role="alert">
@@ -291,7 +297,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group{{ $errors->has('province') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-name">{{ __('Province') }}</label>
-                                                <input type="text" name="province" id="input-name" class="form-control form-control-alternative{{ $errors->has('province') ? ' is-invalid' : '' }}" placeholder="{{ __('Province') }}" value="{{ $pwdinfo -> province }}" required autofocus>
+                                                <input type="text" name="province" id="input-name" class="form-control form-control-alternative{{ $errors->has('province') ? ' is-invalid' : '' }}" placeholder="{{ __('Province') }}" value="{{ $seniorinfo -> province }}" readonly>
 
                                                 @if ($errors->has('province'))
                                                     <span class="invalid-feedback" role="alert">
@@ -303,17 +309,17 @@
                                     </div>
 
                                     <hr class="my-4" />
-                                    <h6 class="heading-small text-muted mb-4">{{ __('Employment') }}</h6>
+                                    <h6 class="heading-small text-muted mb-4">{{ __('Emergency Contact Person') }}</h6>
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="form-group{{ $errors->has('emp_status') ? ' has-danger' : '' }}">
-                                                <label class="form-control-label" for="input-name">{{ __('Employement Status') }}</label>
-                                                <input type="text" name="emp_status" id="input-name" class="form-control form-control-alternative{{ $errors->has('emp_status') ? ' is-invalid' : '' }}" placeholder="{{ __('e.g. Employed') }}" value="{{ $pwdinfo -> emp_status }}" required autofocus>
+                                            <div class="form-group{{ $errors->has('e_name') ? ' has-danger' : '' }}">
+                                                <label class="form-control-label" for="input-name">{{ __('Full Name') }}</label>
+                                                <input type="text" name="e_name" id="input-name" class="form-control form-control-alternative{{ $errors->has('e_name') ? ' is-invalid' : '' }}" placeholder="{{ __('Full Name') }}" value="{{ $seniorinfo -> e_name }}" required autofocus>
 
-                                                @if ($errors->has('emp_status'))
+                                                @if ($errors->has('e_name'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('emp_status') }}</strong>
+                                                        <strong>{{ $errors->first('e_name') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>
@@ -321,26 +327,26 @@
 
 
                                         <div class="col-md-4">
-                                            <div class="form-group{{ $errors->has('emp_type') ? ' has-danger' : '' }}">
-                                                <label class="form-control-label" for="input-name">{{ __('Employement Type') }}</label>
-                                                <input type="text" name="emp_type" id="input-name" class="form-control form-control-alternative{{ $errors->has('emp_type') ? ' is-invalid' : '' }}" placeholder="{{ __('e.g. Regular, Seasonal') }}" value="{{ $pwdinfo -> emp_type }}" required autofocus>
+                                            <div class="form-group{{ $errors->has('e_contact') ? ' has-danger' : '' }}">
+                                                <label class="form-control-label" for="input-name">{{ __('Contact Number: ') }}</label>
+                                                <input type="text" name="e_contact" id="input-name" class="form-control form-control-alternative{{ $errors->has('e_contact') ? ' is-invalid' : '' }}" placeholder="{{ __('Contact No. ') }}" value="{{ $seniorinfo -> e_contact }}" required autofocus>
 
-                                                @if ($errors->has('emp_type'))
+                                                @if ($errors->has('e_contact'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('emp_type') }}</strong>
+                                                        <strong>{{ $errors->first('e_contact') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
-                                            <div class="form-group{{ $errors->has('pwd_skill') ? ' has-danger' : '' }}">
-                                                <label class="form-control-label" for="input-name">{{ __('Skill') }}</label>
-                                                <input type="text" name="pwd_skill" id="input-name" class="form-control form-control-alternative{{ $errors->has('pwd_skill') ? ' is-invalid' : '' }}" placeholder="{{ __('e.g. Welding, Painting') }}" value="{{ $pwdinfo -> pwd_skill }}" required autofocus>
+                                            <div class="form-group{{ $errors->has('e_address') ? ' has-danger' : '' }}">
+                                                <label class="form-control-label" for="input-name">{{ __('Address') }}</label>
+                                                <input type="text" name="e_address" id="input-name" class="form-control form-control-alternative{{ $errors->has('e_address') ? ' is-invalid' : '' }}" placeholder="{{ __('Address') }}" value="{{ $seniorinfo -> e_address }}" required autofocus>
 
-                                                @if ($errors->has('pwd_skill'))
+                                                @if ($errors->has('e_address'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('pwd_skill') }}</strong>
+                                                        <strong>{{ $errors->first('e_address') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>
@@ -353,8 +359,8 @@
                                         <label class="form-control-label" for="input-name">{{ __('Files') }}</label>
                                         <div class="file-drop-area form-control-alternative">
                                             <span class="fake-btn">Choose files</span>
-                                            <span class="file-msg">{{ $pwdinfo -> pwd_file }}</span>
-                                            <input class="file-input" type="file"  name="pwd_file"  value="{{ $pwdinfo -> pwd_file }}"/>
+                                            <span class="file-msg">{{ $seniorinfo -> senior_file }}</span>
+                                            <input class="file-input" type="file" name="senior_file"  value="{{ $seniorinfo -> senior_file }}">
                                         </div>
                                     </div>
                                 </div>
@@ -363,15 +369,14 @@
                                 <div class="text-center">
                                     <div class="row justify-content-center">
                                     <button type="submit" class="btn btn-success">{{ __('Update') }}</button>
-                                    <a class="btn btn-info" href="{{ route('pwd.show', $pwdinfo->id) }}">Cancel</a>
-                                </div>
+                                    <a class="btn btn-info" href="{{ route('senior.show', $seniorinfo->id) }}">Cancel</a>
                                 </div>
                             </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        </div>
         @include('layouts.footers.auth')
     </div>
 </form>
