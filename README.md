@@ -9,14 +9,14 @@ After Installing the Imagick Extension
 2. Generate .env file manually by running:
     cp .env.example .env and php artisan key:generate
 3. Edit the .env base on your database
-
-- DB_CONNECTION=mysql
-- DB_HOST=127.0.0.1
-- DB_PORT=3306
-- DB_DATABASE=laravel <- *Database Name*
-- DB_USERNAME=root
-- DB_PASSWORD=
-
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel <- *Database Name*
+DB_USERNAME=root
+DB_PASSWORD=
+```
 4. Generate the tables and data by running:
     php artisan migrate and php artisan db:seed
 5. Run php artisan serv
