@@ -1,3 +1,27 @@
+Important: Install Imagick Extenstion for XAMMP in Windows (https://ourcodeworld.com/articles/read/349/how-to-install-and-enable-the-imagick-extension-in-xampp-for-windows)
+*This is needed for the qrCode Generation.*
+
+Video Guide (https://www.youtube.com/watch?v=qZ9_rq6c9uY)
+
+After Installing the Imagick Extension
+
+1. Run Composer Update
+2. Generate .env file manually by running:
+    cp .env.example .env and php artisan key:generate
+3. Edit the .env base on your database
+
+- DB_CONNECTION=mysql
+- DB_HOST=127.0.0.1
+- DB_PORT=3306
+- DB_DATABASE=laravel <- *Database Name*
+- DB_USERNAME=root
+- DB_PASSWORD=
+
+4. Generate the tables and data by running:
+    php artisan migrate and php artisan db:seed
+5. Run php artisan serv
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
