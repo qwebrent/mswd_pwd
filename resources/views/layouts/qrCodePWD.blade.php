@@ -7,5 +7,5 @@
     ->errorCorrection('H')
     ->generate(Request::url())) !!} ">
     {{-- {!! QrCode::size(150)->generate(Request::url()); !!} --}}
-    <p>{{ $pwdinfo -> lname }}, {{ $pwdinfo -> fname }} {{ $pwdinfo -> mname }}</p>
+    <p>{{ $pwdinfo -> getFullNamePWD() }}</p>
 </div>

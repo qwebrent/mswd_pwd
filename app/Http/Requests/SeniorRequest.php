@@ -13,7 +13,7 @@ class SeniorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,10 @@ class SeniorRequest extends FormRequest
     public function rules()
     {
         return [
-            'weight' => 'required|numeric',
-            'height' => 'required|numeric',
+            "height" => "required|numeric",
+            "weight" => "required|numeric",
+            "mobile_num" => "required|digits:11",
+            "b_day" => "required|date|before:60 years ago"
         ];
     }
 }

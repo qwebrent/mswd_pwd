@@ -12,6 +12,7 @@ use App\Educbg;
 use App\Barangay;
 use App\Disability;
 use App\PWDDisability;
+use App\Http\Requests\PWDRequest;
 
 class PWDController extends Controller
 {
@@ -36,18 +37,9 @@ class PWDController extends Controller
         return view('pwd.create', compact('pwd_gender','civil_status','educ_bg', 'pwd_disabilities', 'barangays'));
     }
 
-    public function store(Request $request)
+    public function store(PWDRequest $request)
     {
 
-        $request -> validate([
-            "mobile_num" => "required|digits:11",
-            "sss_num" => "required|digits:10",
-            "phealth_num" => "required|digits:12",
-            "reg_num" => "required|digits:12",
-            "lname" => "required|min:2",
-            "fname" => "required|min:2",
-            "mname" => "required|min:2",
-        ]);
         $pwdinfo = new PWDInfo();
 
         $pwdinfo-> lname = $request->input('lname');

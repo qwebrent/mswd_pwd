@@ -8,6 +8,7 @@ use App\CivilStatus;
 use App\Barangay;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\SeniorRequest;
 
 
 class SeniorController extends Controller
@@ -44,14 +45,10 @@ class SeniorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SeniorRequest $request)
     {
 
-        $request -> validate([
-            "height" => "required|numeric",
-            "weight" => "required|numeric",
-            "mobile_num" => "required|digits:11"
-        ]);
+        
         $seniorinfo = new Senior();
 
         $seniorinfo-> lname = $request->input('lname');

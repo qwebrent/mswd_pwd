@@ -130,10 +130,12 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'b_day' => [
+            'before' => 'Age must be 60 years old or above.',
         ],
     ],
+
+    
 
     /*
     |--------------------------------------------------------------------------
