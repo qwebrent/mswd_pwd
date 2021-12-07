@@ -23,8 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/pwd-home', 'DashboardController@admin')->name('pwd.home');
-Route::get('/senior-home', 'DashboardController@senior')->name('senior.home');
+Route::get('/pwd/dashboard', 'DashboardController@admin')->name('pwd.home');
+Route::get('/senior/dashboard', 'DashboardController@senior')->name('senior.home');
 Route::get('/status/update', 'SeniorController@updateStatus')->name('seniors.update.status');
 
 
