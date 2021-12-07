@@ -2,6 +2,7 @@ Important(Optional): Install Imagick Extenstion for XAMMP in Windows (https://ou
 *needed for the generated QR to be saved as a png file*
 
 Video Guide (https://www.youtube.com/watch?v=qZ9_rq6c9uY)
+
 After Installing the Imagick Extension
 
 
