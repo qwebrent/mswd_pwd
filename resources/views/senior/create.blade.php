@@ -59,7 +59,34 @@
                             @endif
 
                             <div class="pl-lg-0">
-                                <div class="row">
+
+                            <div class="row justify-content-center">
+                                
+                                    <div class="col-md-4">
+                                        <div class="form-group{{ $errors->has('b_day') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Birthdate') }}</label>
+                                            <input type="date" name="b_day" id="DOB" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ old('b_day') }}" required autofocus>
+                                            <span id = "message" style="color:red"> </span> <br>
+                                            @if ($errors->has('b_day'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('b_day') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group{{ $errors->has('gender_id') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Age') }}</label>
+                                            <h2 id="result" class="form-control" type="number" readonly></h2>
+                                            <button type="button" class="btn btn-primary float-right" onclick = "ageCalculator(), showhide()">Check Age</button>
+                                        </div>
+                                    </div>
+                                </div>
+<br>
+
+<div id="test">
+                                <div class="row" id="test">
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('lname') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Last Name') }}</label>
@@ -100,7 +127,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" id="test">
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('reg_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Identification Number') }}</label>
@@ -141,8 +168,8 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-4">
+                                <div class="row" id="test">
+                                    <!-- <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('b_day') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Birthdate') }}</label>
                                             <input type="date" name="b_day" id="input-name" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ old('b_day') }}" required autofocus>
@@ -153,7 +180,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('gender_id') ? ' has-danger' : '' }}">
@@ -182,7 +209,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" id="test">
                                     {{-- <div class="col-md-6">
                                         <div class="form-group{{ $errors->has('educbg_id') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Educational Background') }}</label>
@@ -249,7 +276,7 @@
                                 <h6 class="heading-small text-muted mb-4">{{ __('Address') }}</h6>
 
 
-                                    <div class="row">
+                                    <div class="row" id="test">
                                         <div class="col-md-3">
                                             <div class="form-group{{ $errors->has('street_address') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-name">{{ __('House No. Street') }}</label>
@@ -303,10 +330,10 @@
                                         </div>
                                     </div>
 
-                                    <hr class="my-4" />
+                                    <hr class="my-4"/>
                                     <h6 class="heading-small text-muted mb-4">{{ __('Emergency Contact Person') }}</h6>
 
-                                    <div class="row">
+                                    <div class="row" id="test">
                                         <div class="col-md-4">
                                             <div class="form-group{{ $errors->has('e_name') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-name">{{ __('Full Name') }}</label>
@@ -349,7 +376,7 @@
                                     </div>
 
                                 <hr>
-                                <div class="row">
+                                <div class="row" id="test">
                                     <div class="col-md-12">
                                         <label class="form-control-label" for="input-name">{{ __('Files') }}</label>
                                         <div class="file-drop-area form-control-alternative">
@@ -361,7 +388,7 @@
                                 </div>
 
                                 <hr>
-                                <div class="text-center">
+                                <div class="text-center" id="test">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>
                             </div>
@@ -369,7 +396,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
         @include('layouts.footers.auth')
     </div>
 </form>
@@ -448,4 +475,65 @@
   });
 });
     </script>
+
+    <script>
+        
+function ageCalculator() {
+    var userinput = document.getElementById("DOB").value;
+    var dob = new Date(userinput);
+    const div = document.querySelectorAll("#test");
+    if(userinput==null || userinput=='') {
+      document.getElementById("message").innerHTML = "*Please Enter Birthdate!*";  
+      return false; 
+    } else {
+    
+    //calculate month difference from current date in time
+    var month_diff = Date.now() - dob.getTime();
+    
+    //convert the calculated difference in date format
+    var age_dt = new Date(month_diff); 
+    
+    //extract year from date    
+    var year = age_dt.getUTCFullYear();
+    
+    //now calculate the age of the user
+    var age = Math.abs(year - 1970);
+    // if (age <= 59) {  
+    //             div.style.display = "none";  
+    //         }  
+    //         else {  
+    //             div.style.display = "";  
+    //         }
+
+    for(let i=0;i<div.length;i++){
+ const styles = window.getComputedStyle(div[i]);
+    
+    if(age <= 59){
+    div[i].style.visibility='hidden';
+    }else{
+    div[i].style.visibility='visible';
+    }
+  }
+    //display the calculated age
+    return document.getElementById("result").innerHTML =  
+              age;
+    }
+}
+
+
+    </script>
+
+    <!-- <script>
+         function showhide() 
+        {  
+            var age = document.getElementById("result").value;
+            var div = document.getElementById("test");  
+            if ( <= 59) {  
+                div.style.display = "none";  
+            }  
+            else {  
+                div.style.display = "";  
+            }  
+        }  
+    </script> -->
 @endsection
