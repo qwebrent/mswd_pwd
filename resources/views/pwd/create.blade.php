@@ -104,7 +104,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('reg_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Identification Number') }}</label>
-                                            <input type="text" name="reg_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('reg_num') ? ' is-invalid' : '' }}" placeholder="{{ __('ID No.') }}" value="{{ old('reg_num') }}" required autofocus>
+                                            <input type="text" name="reg_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('reg_num') ? ' is-invalid' : '' }}" placeholder="{{ __('ID Number (12 Digit)') }}" value="{{ old('reg_num') }}" required autofocus>
 
                                             @if ($errors->has('reg_num'))
                                                 <span class="invalid-feedback" role="alert">
@@ -117,7 +117,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('sss_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('SSS or GSIS Number') }}</label>
-                                            <input type="text" name="sss_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('sss_num') ? ' is-invalid' : '' }}" placeholder="{{ __('SSS or GSIS No.') }}" value="{{ old('sss_num') }}" required autofocus>
+                                            <input type="text" name="sss_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('sss_num') ? ' is-invalid' : '' }}" placeholder="{{ __('SSS or GSIS No. (10 Digit)') }}" value="{{ old('sss_num') }}" required autofocus>
 
                                             @if ($errors->has('sss_num'))
                                                 <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('phealth_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Phil Health Number') }}</label>
-                                            <input type="text" name="phealth_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('phealth_num') ? ' is-invalid' : '' }}" placeholder="{{ __('Phil Health No.') }}" value="{{ old('phealth_num') }}" required autofocus>
+                                            <input type="text" name="phealth_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('phealth_num') ? ' is-invalid' : '' }}" placeholder="{{ __('Phil Health No. (12 Digit)') }}" value="{{ old('phealth_num') }}" required autofocus>
 
                                             @if ($errors->has('phealth_num'))
                                                 <span class="invalid-feedback" role="alert">
