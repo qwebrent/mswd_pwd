@@ -16,7 +16,7 @@
                         <form action="{{ route('senior.import.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb--1">
-                            <input type="file" name="file" required>
+                            <input type="file" name="file" required accept=".xlsx, .xls, .csv">
                             <button type="submit" class="btn btn-primary">Import</button>
                         </div>
                     </form></h3>
