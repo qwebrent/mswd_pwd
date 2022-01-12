@@ -51,9 +51,12 @@ class DashboardController extends Controller
         $smaleCount = Senior::where('gender_id', 1)->count();
         $sfemaleCount = Senior::where('gender_id', 2)->count();
 
-        $seniorbday = Senior::whereMonth('b_day', '=', Carbon::today()->format('m'))->whereDay('b_day', '=', Carbon::today()->format('d'))->get();
+        //Whole Month List
+        $seniorbday = Senior::whereMonth('b_day', '=', Carbon::today()->format('m'))->orderByRaw('day(b_day) asc')->get();
 
-        //dd($seniorbday);
+        //Today List
+        //$seniorbday = Senior::whereMonth('b_day', '=', Carbon::today()->format('m'))->whereDay('b_day', '=', Carbon::today()->format('d'))->get();
+
 
         return view('seniors_dash', compact('seniorbday', 'smaleCount', 'sfemaleCount'));
     }
