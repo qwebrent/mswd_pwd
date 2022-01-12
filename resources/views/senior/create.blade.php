@@ -58,34 +58,21 @@
                                 </div>
                             @endif
 
-                            <div class="pl-lg-0">
-
-                            <div class="row justify-content-center">
-                                
-                                    <div class="col-md-4">
-                                        <div class="form-group{{ $errors->has('b_day') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-name">{{ __('Birthdate') }}</label>
-                                            <input type="date" name="b_day" id="DOB" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ old('b_day') }}" required autofocus>
-                                            <span id = "message" style="color:red"> </span> <br>
-                                            @if ($errors->has('b_day'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('b_day') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group{{ $errors->has('gender_id') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-name">{{ __('Age') }}</label>
-                                            <h2 id="result" class="form-control" type="number" readonly></h2>
-                                            <button type="button" class="btn btn-primary float-right" onclick = "ageCalculator(), showhide()">Check Age</button>
-                                        </div>
+            <div class="pl-lg-0">
+                    <div id="test">
+                                <div class="row col-md-4">
+                                    <div class="form-group{{ $errors->has('b_day') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-name">{{ __('Birthdate') }}</label>
+                                        <input type="text" name="b_day" id="txtDate" class="form-control form-control-sm form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="yyyy/mm/dd" value="{{ old('b_day') }}" required autofocus readonly="readonly">
+                                        <span id="lblError" style = "color:Red"></span>
+                                        @if ($errors->has('b_day'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('b_day') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
-<br>
 
-<div id="test">
                                 <div class="row" id="test">
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('lname') ? ' has-danger' : '' }}">
@@ -156,7 +143,7 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('height') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-name">{{ __('Height') }}</label>
+                                            <label class="form-control-label" for="input-name">{{ __('Height (cm)') }}</label>
                                             <input type="text" name="height" id="input-name" class="form-control form-control-alternative{{ $errors->has('height') ? ' is-invalid' : '' }}" placeholder="{{ __('cm') }}" value="{{ old('height') }}" required autofocus>
 
                                             @if ($errors->has('height'))
@@ -405,109 +392,85 @@
 @section('page_level_scripts')
     <script src="{{asset('/js/dragdropupload.js')}}"></script>
     <script src="{{asset('/js/imageupload.js')}}"></script>
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"type="text/javascript"></script>
 
-    $(document).ready(function() {
-  var buttonAdd = $("#add-button");
-  var buttonRemove = $("#remove-button");
-  var className = ".dynamic-field";
-  var count = 0;
-  var field = "";
-  var maxFields = 3;
+    <script type="text/javascript">
+        $(function () {
+            $("#txtDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showOn: 'button',
+                buttonImageOnly: true,
+                buttonImage: '{{ asset('calendar.gif') }}',
+                buttonText: 'Enter Birthdate',
+                dateFormat: 'yy/mm/dd',
+                yearRange: '1900:+0',
+                onSelect: function (dateString, txtDate) {
+                    ValidateDOB(dateString);
+                }
+            });
+        });
+        function ValidateDOB(dateString) {
+            var lblError = $("#lblError");
+            var parts = dateString.split("/");
+            var dtDOB = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+            var dtCurrent = new Date();
+            lblError.html("Eligibility 60 years old & above ONLY.")
+            if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 60) {
+                return false;
+            }
 
-  function totalFields() {
-    return $(className).length;
-  }
+            if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 60) {
 
-  function addNewField() {
-    count = totalFields() + 1;
-    field = $("#dynamic-field-1").clone();
-    field.attr("id", "dynamic-field-" + count);
-    field.children("label").text("Type of Disability #" + count);
-    field.find("input").val("");
-    $(className + ":last").after($(field));
-  }
-
-  function removeLastField() {
-    if (totalFields() > 1) {
-      $(className + ":last").remove();
-    }
-  }
-
-  function enableButtonRemove() {
-    if (totalFields() === 2) {
-      buttonRemove.removeAttr("disabled");
-      buttonRemove.addClass("shadow-sm");
-    }
-  }
-
-  function disableButtonRemove() {
-    if (totalFields() === 1) {
-      buttonRemove.attr("disabled", "disabled");
-      buttonRemove.removeClass("shadow-sm");
-    }
-  }
-
-  function disableButtonAdd() {
-    if (totalFields() === maxFields) {
-      buttonAdd.attr("disabled", "disabled");
-      buttonAdd.removeClass("shadow-sm");
-    }
-  }
-
-  function enableButtonAdd() {
-    if (totalFields() === (maxFields - 1)) {
-      buttonAdd.removeAttr("disabled");
-      buttonAdd.addClass("shadow-sm");
-    }
-  }
-
-  buttonAdd.click(function() {
-    addNewField();
-    enableButtonRemove();
-    disableButtonAdd();
-  });
-
-  buttonRemove.click(function() {
-    removeLastField();
-    disableButtonRemove();
-    enableButtonAdd();
-  });
-});
+                //CD: 11/06/2018 and DB: 15/07/2000. Will turned 18 on 15/07/2018.
+                if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+                    return false;
+                }
+                if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                    //CD: 11/06/2018 and DB: 15/06/2000. Will turned 18 on 15/06/2018.
+                    if (dtCurrent.getDate() < dtDOB.getDate()) {
+                        return false;
+                    }
+                }
+            }
+            lblError.html("");
+            return true;
+        }
     </script>
 
-    <script>
-        
-function ageCalculator() {
+    {{-- <script>
+
+    function ageCalculator() {
     var userinput = document.getElementById("DOB").value;
     var dob = new Date(userinput);
     const div = document.querySelectorAll("#test");
     if(userinput==null || userinput=='') {
-      document.getElementById("message").innerHTML = "*Please Enter Birthdate!*";  
-      return false; 
+      document.getElementById("message").innerHTML = "*Please Enter Birthdate!*";
+      return false;
     } else {
-    
+
     //calculate month difference from current date in time
     var month_diff = Date.now() - dob.getTime();
-    
+
     //convert the calculated difference in date format
-    var age_dt = new Date(month_diff); 
-    
-    //extract year from date    
+    var age_dt = new Date(month_diff);
+
+    //extract year from date
     var year = age_dt.getUTCFullYear();
-    
+
     //now calculate the age of the user
     var age = Math.abs(year - 1970);
-    // if (age <= 59) {  
-    //             div.style.display = "none";  
-    //         }  
-    //         else {  
-    //             div.style.display = "";  
+    // if (age <= 59) {
+    //             div.style.display = "none";
+    //         }
+    //         else {
+    //             div.style.display = "";
     //         }
 
     for(let i=0;i<div.length;i++){
  const styles = window.getComputedStyle(div[i]);
-    
+
     if(age <= 59){
     div[i].style.visibility='hidden';
     }else{
@@ -515,25 +478,25 @@ function ageCalculator() {
     }
   }
     //display the calculated age
-    return document.getElementById("result").innerHTML =  
+    return document.getElementById("result").innerHTML =
               age;
     }
 }
 
 
-    </script>
+    </script> --}}
 
     <!-- <script>
-         function showhide() 
-        {  
+         function showhide()
+        {
             var age = document.getElementById("result").value;
-            var div = document.getElementById("test");  
-            if ( <= 59) {  
-                div.style.display = "none";  
-            }  
-            else {  
-                div.style.display = "";  
-            }  
-        }  
+            var div = document.getElementById("test");
+            if ( <= 59) {
+                div.style.display = "none";
+            }
+            else {
+                div.style.display = "";
+            }
+        }
     </script> -->
 @endsection
