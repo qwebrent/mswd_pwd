@@ -146,7 +146,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('b_day') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Birthdate') }}</label>
-                                            <input type="date" name="b_day" id="input-name" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ $seniorinfo -> b_day }}" required autofocus>
+                                            <input type="text" name="b_day" id="txtDate" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="yyyy/mm/dd" value="{{ $seniorinfo -> b_day }}" required autofocus readonly="readonly">
 
                                             @if ($errors->has('b_day'))
                                                 <span class="invalid-feedback" role="alert">
@@ -385,73 +385,24 @@
 @section('page_level_scripts')
     <script src="{{asset('/js/dragdropupload.js')}}"></script>
     <script src="{{asset('/js/imageupload.js')}}"></script>
-    <script>
-        $(document).ready(function() {
-  var buttonAdd = $("#add-button");
-  var buttonRemove = $("#remove-button");
-  var className = ".dynamic-field";
-  var count = 0;
-  var field = "";
-  var maxFields = 3;
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"type="text/javascript"></script>
 
-  function totalFields() {
-    return $(className).length;
-  }
-
-  function addNewField() {
-    count = totalFields() + 1;
-    field = $("#dynamic-field-1").clone();
-    field.attr("id", "dynamic-field-" + count);
-    field.children("label").text("Type of Disability #" + count);
-    field.find("input").val("");
-    $(className + ":last").after($(field));
-  }
-
-  function removeLastField() {
-    if (totalFields() > 1) {
-      $(className + ":last").remove();
-    }
-  }
-
-  function enableButtonRemove() {
-    if (totalFields() === 2) {
-      buttonRemove.removeAttr("disabled");
-      buttonRemove.addClass("shadow-sm");
-    }
-  }
-
-  function disableButtonRemove() {
-    if (totalFields() === 1) {
-      buttonRemove.attr("disabled", "disabled");
-      buttonRemove.removeClass("shadow-sm");
-    }
-  }
-
-  function disableButtonAdd() {
-    if (totalFields() === maxFields) {
-      buttonAdd.attr("disabled", "disabled");
-      buttonAdd.removeClass("shadow-sm");
-    }
-  }
-
-  function enableButtonAdd() {
-    if (totalFields() === (maxFields - 1)) {
-      buttonAdd.removeAttr("disabled");
-      buttonAdd.addClass("shadow-sm");
-    }
-  }
-
-  buttonAdd.click(function() {
-    addNewField();
-    enableButtonRemove();
-    disableButtonAdd();
-  });
-
-  buttonRemove.click(function() {
-    removeLastField();
-    disableButtonRemove();
-    enableButtonAdd();
-  });
-});
+    <script type="text/javascript">
+        $(function () {
+            $("#txtDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showOn: 'button',
+                buttonImageOnly: true,
+                buttonImage: '{{ asset('calendar.gif') }}',
+                buttonText: 'Enter Birthdate',
+                dateFormat: 'mm/dd/yy',
+                yearRange: '1900:+0',
+                onSelect: function (dateString, txtDate) {
+                    ValidateDOB(dateString);
+                }
+            });
+        });
     </script>
 @endsection

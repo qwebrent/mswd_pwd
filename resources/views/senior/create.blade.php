@@ -71,6 +71,7 @@
                                             </span>
                                         @endif
                                     </div>
+
                                 </div>
 
                                 <div class="row" id="test">
@@ -404,7 +405,7 @@
                 buttonImageOnly: true,
                 buttonImage: '{{ asset('calendar.gif') }}',
                 buttonText: 'Enter Birthdate',
-                dateFormat: 'yy/mm/dd',
+                dateFormat: 'mm/dd/yy',
                 yearRange: '1900:+0',
                 onSelect: function (dateString, txtDate) {
                     ValidateDOB(dateString);
