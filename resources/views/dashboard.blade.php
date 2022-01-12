@@ -14,7 +14,7 @@
                         <video id="preview" class="p-1 shadow-sm mb-5 bg-white rounded" style="width: 350px;"></video>
 
 
-                    <h4 style="color:white">Scan QR Codes using your Camera</h4>
+                    <h4 style="color:white">Scan QR Codes</h4>
                     {{-- <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
                       <label class="btn btn-primary active">
                         <input type="radio" name="options" value="1" autocomplete="off" checked> Front Camera

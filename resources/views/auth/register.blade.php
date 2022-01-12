@@ -9,7 +9,7 @@
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent pb-5">
-                        <div class="text-muted text-center mt-2 mb-4">{{ __('Sign up') }}</div>
+                        <div class="text-muted text-center mt-2 mb-4">{{ __('Register New User') }}</div>
                         {{-- <div class="text-center">
                             <a href="#" class="btn btn-neutral btn-icon mr-4">
                                 <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/github.svg"></span>

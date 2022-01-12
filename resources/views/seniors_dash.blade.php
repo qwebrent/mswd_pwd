@@ -5,11 +5,11 @@
 
 <div class="container-fluid mt--7">
 
-    
+
         <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
-                    <h3 class="col-12 mb-0">{{ __('Today\'s Birthday List') }}</h3>
+                    <h3 class="col-12 mb-0">{{ now()->format('F') }}{{__(' Birthday List') }}</h3>
                 </div>
             </div>
             <div class="card-body">
@@ -44,7 +44,7 @@
 
             </div>
         </div>
-    
+
 
 </div>
 
