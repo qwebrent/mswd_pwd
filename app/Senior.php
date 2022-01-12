@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Senior extends Model
 {
     use SoftDeletes;
-
     protected $table = 'seniors';
+
+
     protected $fillable=[
         'lname',
         'fname',
@@ -33,6 +34,7 @@ class Senior extends Model
          'senior_illness',
          'status'
     ];
+
 
     public function barangay(){
         return $this->belongsTo(Barangay::class);
@@ -64,6 +66,15 @@ class Senior extends Model
 
     }
 
+    public function setBdayAttribute($value)
+    {
+        $this->attributes['b_day'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+    }
+
+    public function getBdayAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->attributes['b_day'])->format('m/d/Y');
+    }
 
 
 }
