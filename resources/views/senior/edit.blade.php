@@ -385,8 +385,10 @@
 @section('page_level_scripts')
     <script src="{{asset('/js/dragdropupload.js')}}"></script>
     <script src="{{asset('/js/imageupload.js')}}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"type="text/javascript"></script>
+    <script src="{{ asset('js/1.6-jquery.min.js') }}"></script>
+    <script src="{{ asset('js/1.8-jquery-ui.min.js') }}"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"type="text/javascript"></script> --}}
 
     <script type="text/javascript">
         $(function () {
