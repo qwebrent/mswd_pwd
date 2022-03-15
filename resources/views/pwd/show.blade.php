@@ -68,7 +68,7 @@
                                 <div class="col-md-3">
                                     <label class="heading-small text-muted">Full Name:</label>
                                 </div>
-                                <span class="col-md-6 font-weight-normal">{{ $pwdinfo -> lname }}, {{ $pwdinfo -> fname }} {{ $pwdinfo -> mname }}</span>
+                                <span class="col-md-6 font-weight-normal">{{ $pwdinfo -> getFullNamePWD() }}</span>
                             </div>
 
                             <div class="row">
@@ -131,7 +131,7 @@
 
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label class="heading-small text-muted">Gender:</label>
+                                    <label class="heading-small text-muted">Sex:</label>
                                 </div>
                                 <span class="col-md-6 font-weight-normal">{{ $pwdinfo -> gender -> gender}}</span>
                             </div>
@@ -250,7 +250,7 @@
                         @method('DELETE')
                     <button type="submit" class="btn btn-white">Yes, Delete</button>
                     </form>
-                    <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

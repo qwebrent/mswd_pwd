@@ -15,7 +15,7 @@ class CreateDisabilityTable extends Migration
     {
         Schema::create('disability', function (Blueprint $table) {
             $table->id();
-            $table->string('pwd_disability');
+            $table->string('pwd_disability', 32);
             $table->timestamps();
         });
     }

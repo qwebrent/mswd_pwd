@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use QrCode;
-use App\PWDInfo;
-use App\Gender;
-use App\CivilStatus;
+use Validator;
 use App\Educbg;
+use App\Gender;
+use App\PWDInfo;
 use App\Barangay;
 use App\Disability;
+use App\CivilStatus;
 use App\PWDDisability;
+use Illuminate\Http\Request;
 use App\Http\Requests\PWDRequest;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\PWDUpdateRequest;
 
 class PWDController extends Controller
 {
@@ -40,11 +42,13 @@ class PWDController extends Controller
     public function store(PWDRequest $request)
     {
 
+
         $pwdinfo = new PWDInfo();
 
         $pwdinfo-> lname = $request->input('lname');
         $pwdinfo-> fname = $request->input('fname');
         $pwdinfo-> mname = $request->input('mname');
+        $pwdinfo-> suffix = $request->input('suffix');
         $pwdinfo-> reg_num = $request->input('reg_num');
         $pwdinfo-> sss_num = $request->input('sss_num');
         $pwdinfo-> phealth_num = $request->input('phealth_num');
@@ -99,13 +103,14 @@ class PWDController extends Controller
         return view('pwd.edit', compact('pwd_gender','civil_status','educ_bg', 'pwd_disabilities', 'barangays', 'pwdinfo'));
     }
 
-    public function update(Request $request, $id){
+    public function update(PWDUpdateRequest $request, $id){
 
         $pwdinfo = PWDInfo::findOrFail($id);
 
         $pwdinfo-> lname = $request->input('lname');
         $pwdinfo-> fname = $request->input('fname');
         $pwdinfo-> mname = $request->input('mname');
+        $pwdinfo-> suffix = $request ->input('suffix');
         $pwdinfo-> reg_num = $request->input('reg_num');
         $pwdinfo-> sss_num = $request->input('sss_num');
         $pwdinfo-> phealth_num = $request->input('phealth_num');

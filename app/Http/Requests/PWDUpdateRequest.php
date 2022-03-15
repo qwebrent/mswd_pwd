@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SeniorRequest extends FormRequest
+class PWDUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,11 @@ class SeniorRequest extends FormRequest
     public function rules()
     {
         return [
+            'mobile_num' => 'required|digits:11',
             'lname' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
             'fname' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
             'mname' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
             'suffix' => 'nullable|regex:/^[a-zA-Z ]+$/u,',
-            "height" => "required|numeric",
-            "weight" => "required|numeric",
-            "mobile_num" => "required|digits:11",
-            "b_day" => "required|before:60 years ago",
-            "reg_num" => "required|digits:12",
             'b_day' => 'required',
             'gender_id' => 'required',
             'civstatus_id' => 'required',
@@ -41,6 +37,12 @@ class SeniorRequest extends FormRequest
             'barangay_id' => 'required',
             'municipality' => 'required',
             'province' => 'required',
+            'emp_status' => 'required',
+            'emp_type' => 'required',
+            'pwd_skill' => 'required',
+            'reg_num' => ['required', 'digits:12'],
+            'sss_num' => ['nullable', 'digits:10'],
+            'phealth_num' => ['nullable', 'digits:12'],
         ];
     }
 
@@ -51,8 +53,8 @@ class SeniorRequest extends FormRequest
             'fname' => 'First Name',
             'mname' => 'Middle Name',
             'reg_num' => 'ID Number',
-            'mobile_num' => 'Mobile Number',
-            'b_day' => 'Birthday',
+            'sss_num' => 'SSS Number',
+            'phealth_num' => 'Phil Health Number',
         ];
     }
 }

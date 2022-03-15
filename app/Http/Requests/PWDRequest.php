@@ -25,12 +25,10 @@ class PWDRequest extends FormRequest
     {
         return [
             'mobile_num' => 'required|digits:11',
-            'sss_num' => 'required|digits:10',
-            'phealth_num' => 'required|digits:12',
-            'reg_num' => 'required|digits:12',
-            'lname' => 'required|min:2',
-            'fname' => 'required|min:2',
-            'mname' => 'required|min:2',
+            'lname' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
+            'fname' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
+            'mname' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
+            'suffix' => 'nullable|regex:/^[a-zA-Z ]+$/u,',
             'b_day' => 'required',
             'gender_id' => 'required',
             'civstatus_id' => 'required',
@@ -42,6 +40,9 @@ class PWDRequest extends FormRequest
             'emp_status' => 'required',
             'emp_type' => 'required',
             'pwd_skill' => 'required',
+            'reg_num' => ['unique:pwdinfos,reg_num', 'required', 'digits:12'],
+            'sss_num' => ['unique:pwdinfos,sss_num', 'nullable', 'digits:10'],
+            'phealth_num' => ['unique:pwdinfos,phealth_num', 'nullable', 'digits:12'],
         ];
     }
 

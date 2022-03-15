@@ -15,7 +15,7 @@ class CreateEducbgTable extends Migration
     {
         Schema::create('educbg', function (Blueprint $table) {
             $table->id();
-            $table->string('educ_bg');
+            $table->string('educ_bg', 32);
             $table->timestamps();
         });
     }

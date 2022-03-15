@@ -93,7 +93,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('pwd.home') }}">
-                                    {{ __('View Dashboard') }}
+                                    {{ __('PWD Dashboard') }}
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -120,7 +120,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('senior.home') }}">
-                                    {{ __('View Dashboard') }}
+                                    {{ __('Seniors Dashboard') }}
                                 </a>
                             </li>
                             <li class="nav-item">

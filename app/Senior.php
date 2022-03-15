@@ -17,6 +17,7 @@ class Senior extends Model
         'lname',
         'fname',
           'mname',
+          'suffix',
            'reg_num',
            'height',
             'weight',
@@ -50,7 +51,7 @@ class Senior extends Model
 
     public function getFullNameAttribute(){
 
-        return $this-> lname . ',' . $this-> fname .' '. $this->mname;
+        return $this-> lname . ',' . $this-> fname .' '. $this->mname .', '. $this->suffix;
 
     }
 

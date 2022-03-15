@@ -16,15 +16,23 @@ $(document).ready(function() {
     dom: 'Bfrtil',
      buttons: [
          'copyHtml5',
-         'excelHtml5',
-         'csvHtml5',
+         {extend: 'print',
+                exportOptions:
+                    { columns:[0,1,2,3,4,5]},
+         },
+        {
+                extend: 'excelHtml5',
+                exportOptions:
+                    { columns:[0,1,2,3,4,5]},
+            },
          {
-             extend: 'pdfHtml5',
-             orientation: 'landscape',
-             pageSize: 'A4',
-             exportOptions:{
-                 columns: [0,1,2,3,4,5]
-             },
+                extend: 'pdfHtml5',
+                download: 'open',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                exportOptions:{
+                    columns: [0,1,2,3,4,5]
+            },
              customize : function(doc){
     doc.styles.tableHeader.alignment = 'left'; //Title Justification
     doc.content[1].table.widths = ['2.6%', '23.6%', '23.6%', '16.6%', '16.6%', '16.6%']; //Column Size

@@ -4,8 +4,8 @@
 
 @section('content')
     @include('users.partials.header', [
-        'title' => __('New Entry'),
-        'description' => __('This is where you enter all of the information related to Person with Disabilities'),
+        'title' => __('Edit Senior Information'),
+        'description' => __('This is where you edit all of the information related to Person with Disabilities'),
         'class' => 'col-lg-7'
     ])
 <form method="post" action="{{ route('senior.update', $seniorinfo->id) }}" autocomplete="off" enctype="multipart/form-data">
@@ -87,7 +87,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group{{ $errors->has('mname') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Middle Name') }}</label>
                                             <input type="text" name="mname" id="input-name" class="form-control form-control-alternative{{ $errors->has('mname') ? ' is-invalid' : '' }}" placeholder="{{ __('Middle Name') }}" value="{{ $seniorinfo -> mname }}" required autofocus>
@@ -95,6 +95,19 @@
                                             @if ($errors->has('mname'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('mname') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group{{ $errors->has('suffix') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Suffix') }}</label>
+                                            <input type="text" name="suffix" id="input-name" class="form-control form-control-alternative{{ $errors->has('suffix') ? ' is-invalid' : '' }}" placeholder="{{ __('Jr., I, II, III, etc here') }}" value="{{ $seniorinfo -> suffix }}" required autofocus>
+
+                                            @if ($errors->has('suffix'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('suffix') }}</strong>
                                                 </span>
                                             @endif
                                         </div>

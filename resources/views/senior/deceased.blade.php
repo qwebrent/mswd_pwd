@@ -68,7 +68,7 @@
                 </td> --}}
 
                 <td>
-                    <a class="btn btn-sm btn-primary" href="{{ route('senior.restore', $dSenior) }}">Restore</a>
+                    <a class="btn btn-sm btn-primary" onclick="return confirm('Are you sure you want to restore this member\'s information')" href="{{ route('senior.restore', $dSenior) }}">Restore</a>
                 </td>
             </tr>
             @endforeach

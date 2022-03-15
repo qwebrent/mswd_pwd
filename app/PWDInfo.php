@@ -12,6 +12,7 @@ class PWDInfo extends Model
         'lname',
         'fname',
           'mname',
+          'suffix',
            'reg_num',
            'sss_num',
        'phealth_num',
@@ -60,7 +61,7 @@ class PWDInfo extends Model
     }
 
     public function getFullNamePWD(){
-        return $this-> lname . ',' . $this-> fname .' '. $this->mname;
+        return $this-> lname . ', ' . $this-> fname .' '. $this->mname . ', ' . $this-> suffix;
     }
 
     public function getAge(){
@@ -68,4 +69,5 @@ class PWDInfo extends Model
         return Carbon::parse($this->attributes['b_day'])->age;
 
     }
+
 }

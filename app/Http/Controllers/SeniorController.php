@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Senior;
 use App\Gender;
-use App\CivilStatus;
+use App\Senior;
 use App\Barangay;
 use Carbon\Carbon;
+use App\CivilStatus;
 use Illuminate\Http\Request;
 use App\Http\Requests\SeniorRequest;
+
 
 
 class SeniorController extends Controller
@@ -48,12 +49,13 @@ class SeniorController extends Controller
     public function store(SeniorRequest $request)
     {
 
-        
+
         $seniorinfo = new Senior();
 
         $seniorinfo-> lname = $request->input('lname');
         $seniorinfo-> fname = $request->input('fname');
         $seniorinfo-> mname = $request->input('mname');
+        $seniorinfo-> suffix = $request->input('suffix');
         $seniorinfo-> reg_num = $request->input('reg_num');
         $seniorinfo-> height = $request->input('height');
         $seniorinfo-> weight = $request->input('weight');
@@ -136,6 +138,7 @@ class SeniorController extends Controller
         $seniorinfo-> lname = $request->input('lname');
         $seniorinfo-> fname = $request->input('fname');
         $seniorinfo-> mname = $request->input('mname');
+        $seniorinfo-> suffix = $request->input('suffix');
         $seniorinfo-> reg_num = $request->input('reg_num');
         $seniorinfo-> height = $request->input('height');
         $seniorinfo-> weight = $request->input('weight');

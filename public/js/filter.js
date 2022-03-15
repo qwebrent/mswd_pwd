@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    document.title='MSWD - PWD Information';
-    $('#pwdtable').DataTable({
+    document.title='MSWD - Senior Information';
+    $('#seniorstable').DataTable({
         "language": {
             "lengthMenu": "Show _MENU_",
             "paginate":

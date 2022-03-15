@@ -35,7 +35,7 @@
         <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
     <div class="table-responsive py-4">
-        <table class="table table-sm" style="width: 100%" id="pwdtable">
+        <table class="table table-sm" style="width: 100%" id="seniorstable">
         <thead class="thead-light">
             <tr>
                 <th>ID</th>
@@ -50,7 +50,7 @@
             @foreach ($seniorinfos as $seniorinfo)
             <tr>
                 <td>{{ $seniorinfo -> id}}</td>
-                <td>{{ $seniorinfo -> lname }}, {{ $seniorinfo -> fname }} {{ $seniorinfo -> mname }}</td>
+                <td>{{ $seniorinfo -> getFullNameAttribute() }}</td>
                 <td>Brgy. {{ $seniorinfo -> barangay -> barangay }} {{ $seniorinfo -> municipality }}, {{ $seniorinfo -> province }}</td>
                 <td>{{ $seniorinfo -> reg_num }}</td>
                 <td>@if ($seniorinfo -> status == 1)

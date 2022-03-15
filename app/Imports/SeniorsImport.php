@@ -13,6 +13,9 @@ use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Validators\Failure;
 use Throwable;
+use Maatwebsite\Excel\Imports\HeadingRowFormatter;
+
+HeadingRowFormatter::default('none');
 
 class SeniorsImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidation, SkipsOnFailure
 {
@@ -26,31 +29,32 @@ class SeniorsImport implements ToModel, WithHeadingRow, SkipsOnError, WithValida
     public function model(array $row)
     {
         return new Senior([
-        'lname' => $row['last_name'],
-        'fname' => $row['first_name'],
-        'mname' => $row['middle_name'],
-        'reg_num' => $row['registration'],
-        'weight' => $row['weight'],
-        'height' => $row['height'],
-        'b_day' => $row['birthday'],
-        'gender_id' => $row['gender'],
-        'civstatus_id' => $row['civil_status'],
-        'mobile_num' => $row['mobile_number'],
-        'street_address' => $row['street'],
-        'barangay_id' => $row['barangay'],
-        'municipality' => $row['municipality'],
-        'province' => $row['province'],
-        'e_name' => $row['ename'],
-        'e_contact' => $row['econtact'],
-        'e_address' => $row['eaddress'],
-        'senior_illness' => $row['illness'],
+        'lname' => $row['Last Name'],
+        'fname' => $row['First Name'],
+        'mname' => $row['Middle Name'],
+        'suffix' => $row['Suffix'],
+        'reg_num' => $row['Registration Number'],
+        'weight' => $row['Weight'],
+        'height' => $row['Height'],
+        'b_day' => $row['Birthdate'],
+        'gender_id' => $row['Gender'],
+        'civstatus_id' => $row['Civil Status'],
+        'mobile_num' => $row['Mobile Number'],
+        'street_address' => $row['Street'],
+        'barangay_id' => $row['Barangay'],
+        'municipality' => $row['Municipality'],
+        'province' => $row['Province'],
+        'e_name' => $row['Contact Person'],
+        'e_contact' => $row['Emergency Number'],
+        'e_address' => $row['Emergency Address'],
+        'senior_illness' => $row['Illness'],
         ]);
     }
 
     public function rules(): array {
 
         return [
-            '*.registration' => ['unique:seniors,reg_num']
+            '*.Registration Number' => ['unique:seniors,reg_num']
         ];
 
     }

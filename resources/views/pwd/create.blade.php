@@ -1,6 +1,11 @@
 @extends('layouts.app', ['title' => __('PWD Information')])
 
+@section('page_level_css')
 
+{{-- <link rel="stylesheet" href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css') }}"> --}}
+
+@endsection
 
 @section('content')
     @include('users.partials.header', [
@@ -86,7 +91,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group{{ $errors->has('mname') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Middle Name') }}</label>
                                             <input type="text" name="mname" id="input-name" class="form-control form-control-alternative{{ $errors->has('mname') ? ' is-invalid' : '' }}" placeholder="{{ __('Middle Name') }}" value="{{ old('mname') }}" required autofocus>
@@ -94,6 +99,19 @@
                                             @if ($errors->has('mname'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('mname') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group{{ $errors->has('suffix') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Suffix') }}</label>
+                                            <input type="text" name="suffix" id="input-name" class="form-control form-control-alternative{{ $errors->has('suffix') ? ' is-invalid' : '' }}" placeholder="{{ __('Jr., I, II, III, etc here') }}" value="{{ old('suffix') }}" autofocus>
+
+                                            @if ($errors->has('suffix'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('suffix') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -117,7 +135,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('sss_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('SSS or GSIS Number') }}</label>
-                                            <input type="text" name="sss_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('sss_num') ? ' is-invalid' : '' }}" placeholder="{{ __('SSS or GSIS No. (10 Digit)') }}" value="{{ old('sss_num') }}" required autofocus>
+                                            <input type="text" name="sss_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('sss_num') ? ' is-invalid' : '' }}" placeholder="{{ __('SSS or GSIS No. (10 Digit)') }}" value="{{ old('sss_num') }}" autofocus>
 
                                             @if ($errors->has('sss_num'))
                                                 <span class="invalid-feedback" role="alert">
@@ -130,7 +148,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('phealth_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Phil Health Number') }}</label>
-                                            <input type="text" name="phealth_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('phealth_num') ? ' is-invalid' : '' }}" placeholder="{{ __('Phil Health No. (12 Digit)') }}" value="{{ old('phealth_num') }}" required autofocus>
+                                            <input type="text" name="phealth_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('phealth_num') ? ' is-invalid' : '' }}" placeholder="{{ __('Phil Health No. (12 Digit)') }}" value="{{ old('phealth_num') }}" autofocus>
 
                                             @if ($errors->has('phealth_num'))
                                                 <span class="invalid-feedback" role="alert">
@@ -145,7 +163,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('b_day') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Birthdate') }}</label>
-                                            <input type="date" name="b_day" id="input-name" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ old('b_day') }}" required autofocus>
+                                            <input type="text" name="b_day" id="datepicker" class="form-control form-control-alternative" {{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="yyyy-mm-dd" value="{{ old('b_day') }}" required autofocus>
 
                                             @if ($errors->has('b_day'))
                                                 <span class="invalid-feedback" role="alert">
@@ -157,7 +175,7 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('gender_id') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-name">{{ __('Gender') }}</label>
+                                            <label class="form-control-label" for="input-name">{{ __('Sex') }}</label>
                                             <select class="form-control form-control-alternative" name="gender_id" id="gender_id">
 
                                                 @foreach ($pwd_gender as $pwdgender)
@@ -349,7 +367,7 @@
 
                                 <hr>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-submit">Submit</button>
                                 </div>
                             </div>
                     </div>
@@ -357,6 +375,49 @@
             </div>
         </div>
 
+        <div class="modal fade" id="modal-submit" tabindex="-1" role="dialog" aria-labelledby="modal-submit" aria-hidden="true">
+            <div class="modal-dialog modal-secondary modal-dialog-centered modal-" role="document">
+                <div class="modal-content bg-gradient-secondary">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-notification">Data Privacy Consent</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="py-3 text-center">
+                            <i class="ni ni-lock-circle-open ni-3x"></i>
+                            <h4 class="heading mt-4">You should read this!</h4>
+                            <p style="font-weight:400">In submitting this form I agree to my details being used for the purposes of the MSWD Office.
+                                The information will only be accessed by necessary MSWD staff.
+                                I understand that my data will be held securely and will not be distributed to third parties.
+                                I have a right to change or access my information.</p>
+
+                                <p>
+                                    Personal information collected are stored and later on disposed of via shredding and permanently deleted in our electronic files in accordance to R.A. No. 9470 otherwise known as National Archives of the Philippines Act of 2007.
+                                </p>
+
+                                <p style="font-style:italic">
+                                    I have read this form, understood its
+                                    contents, and consent to the processing
+                                    of my personal data. I understand that
+                                    my consent does not preclude the
+                                    existence of other criteria for lawful
+                                    processing of personal data, and does
+                                    not waive any of my rights under the
+                                    Data Privacy Act of 2012 and other
+                                    applicable laws.
+
+                                </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-white">{{ __('Save') }}</button>
+                        <button type="button" class="btn btn-link text-black ml-auto" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         @include('layouts.footers.auth')
     </div>
 </form>
@@ -365,6 +426,9 @@
 @section('page_level_scripts')
     <script src="{{asset('/js/dragdropupload.js')}}"></script>
     <script src="{{asset('/js/imageupload.js')}}"></script>
+    <script src="{{ url ('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js') }}"></script>
+    <script src="{{ url ('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css') }}"></script>
+    <script src="{{ url ('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js') }}"></script>
     <script>
 
     $(document).ready(function() {
@@ -435,4 +499,15 @@
   });
 });
     </script>
+
+
+<script>
+    $(function() {
+    $( "#datepicker" ).datepicker({
+        format: 'yyyy-mm-dd',
+        endDate: '-1d',
+        autoclose: true });
+  });
+</script>
+
 @endsection

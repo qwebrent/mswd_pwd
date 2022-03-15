@@ -15,24 +15,25 @@ class CreatePwdinfosTable extends Migration
     {
         Schema::create('pwdinfos', function (Blueprint $table) {
             $table->id();
-                $table->string('lname');
-                $table->string('fname');
-                $table->string('mname');
-                $table->string('reg_num');
-                $table->string('sss_num');
-                $table->string('phealth_num');
+                $table->string('lname', 32);
+                $table->string('fname', 32);
+                $table->string('mname', 32);
+                $table->string('suffix', 32)->nullable();
+                $table->string('reg_num', 64)->unique();
+                $table->string('sss_num', 64)->unique()->nullable();
+                $table->string('phealth_num', 64)->unique()->nullable();
                 $table->date('b_day');
                 $table->bigInteger('gender_id')->unsigned();
                 $table->bigInteger('civstatus_id')->unsigned();
                 $table->bigInteger('educbg_id')->unsigned();
-                $table->string('mobile_num');
-                $table->string('street_address');
+                $table->string('mobile_num', 32);
+                $table->string('street_address', 64);
                 $table->bigInteger('barangay_id')->unsigned();
-                $table->string('municipality');
-                $table->string('province');
-                $table->string('emp_status');
-                $table->string('emp_type');
-                $table->string('pwd_skill');
+                $table->string('municipality', 64);
+                $table->string('province', 64);
+                $table->string('emp_status', 64);
+                $table->string('emp_type', 64);
+                $table->string('pwd_skill', 64);
                 $table->mediumText('pwd_file')->nullable();
                 $table->mediumText('pwd_img')->nullable();
                 $table->json('disability_name');

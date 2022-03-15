@@ -4,8 +4,8 @@
 
 @section('content')
     @include('users.partials.header', [
-        'title' => __('New Entry'),
-        'description' => __('This is where you enter all of the information related to Person with Disabilities'),
+        'title' => __('Edit PWD Information'),
+        'description' => __('This is where you edit all of the information related to Person with Disabilities'),
         'class' => 'col-lg-7'
     ])
 <form method="post" action="{{ route('pwd.update', $pwdinfo->id) }}" autocomplete="off" enctype="multipart/form-data">
@@ -87,7 +87,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group{{ $errors->has('mname') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Middle Name') }}</label>
                                             <input type="text" name="mname" id="input-name" class="form-control form-control-alternative{{ $errors->has('mname') ? ' is-invalid' : '' }}" placeholder="{{ __('Middle Name') }}" value="{{ $pwdinfo -> mname }}" required autofocus>
@@ -99,6 +99,20 @@
                                             @endif
                                         </div>
                                     </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group{{ $errors->has('suffix') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Suffix') }}</label>
+                                            <input type="text" name="suffix" id="input-name" class="form-control form-control-alternative{{ $errors->has('suffix') ? ' is-invalid' : '' }}" placeholder="{{ __('Jr., I, II, III, etc here') }}" value="{{ $pwdinfo -> suffix }}" autofocus>
+
+                                            @if ($errors->has('suffix'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('suffix') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="row">
@@ -118,7 +132,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('sss_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('SSS or GSIS Number') }}</label>
-                                            <input type="text" name="sss_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('sss_num') ? ' is-invalid' : '' }}" placeholder="{{ __('SSS or GSIS No.') }}" value="{{ $pwdinfo -> sss_num }}" required autofocus>
+                                            <input type="text" name="sss_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('sss_num') ? ' is-invalid' : '' }}" placeholder="{{ __('SSS or GSIS No.') }}" value="{{ $pwdinfo -> sss_num }}"autofocus>
 
                                             @if ($errors->has('sss_num'))
                                                 <span class="invalid-feedback" role="alert">
@@ -131,7 +145,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('phealth_num') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Phil Health Number') }}</label>
-                                            <input type="text" name="phealth_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('phealth_num') ? ' is-invalid' : '' }}" placeholder="{{ __('Phil Health No.') }}" value="{{ $pwdinfo -> phealth_num }}" required autofocus>
+                                            <input type="text" name="phealth_num" id="input-name" class="form-control form-control-alternative{{ $errors->has('phealth_num') ? ' is-invalid' : '' }}" placeholder="{{ __('Phil Health No.') }}" value="{{ $pwdinfo -> phealth_num }}" autofocus>
 
                                             @if ($errors->has('phealth_num'))
                                                 <span class="invalid-feedback" role="alert">
@@ -146,7 +160,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('b_day') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Birthdate') }}</label>
-                                            <input type="date" name="b_day" id="input-name" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ $pwdinfo -> b_day }}" required autofocus>
+                                            <input type="text" name="b_day" id="datepicker" class="form-control form-control-alternative{{ $errors->has('b_day') ? ' is-invalid' : '' }}" placeholder="" value="{{ $pwdinfo -> b_day }}" required autofocus>
 
                                             @if ($errors->has('b_day'))
                                                 <span class="invalid-feedback" role="alert">
@@ -158,7 +172,7 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group{{ $errors->has('gender_id') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-name">{{ __('Gender') }}</label>
+                                            <label class="form-control-label" for="input-name">{{ __('Sex') }}</label>
                                             <select class="form-control form-control-alternative" name="gender_id" id="gender_id">
                                                 <option value="" selected disabled>Select</option>
                                                 @foreach ($pwd_gender as $pwdgender)
@@ -380,6 +394,19 @@
 @section('page_level_scripts')
     <script src="{{asset('/js/dragdropupload.js')}}"></script>
     <script src="{{asset('/js/imageupload.js')}}"></script>
+    <script src="{{ url ('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js') }}"></script>
+    <script src="{{ url ('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css') }}"></script>
+    <script src="{{ url ('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js') }}"></script>
+
+    <script>
+        $(function() {
+        $( "#datepicker" ).datepicker({
+            format: 'yyyy-mm-dd',
+            endDate: '+0d',
+            autoclose: true });
+      });
+    </script>
+
     <script>
         $(document).ready(function() {
   var buttonAdd = $("#add-button");
