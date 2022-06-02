@@ -103,7 +103,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group{{ $errors->has('suffix') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Suffix') }}</label>
-                                            <input type="text" name="suffix" id="input-name" class="form-control form-control-alternative{{ $errors->has('suffix') ? ' is-invalid' : '' }}" placeholder="{{ __('Jr., I, II, III, etc here') }}" value="{{ $seniorinfo -> suffix }}" required autofocus>
+                                            <input type="text" name="suffix" id="input-name" class="form-control form-control-alternative{{ $errors->has('suffix') ? ' is-invalid' : '' }}" placeholder="{{ __('Jr., I, II, III, etc here') }}" value="{{ $seniorinfo -> suffix }}" autofocus>
 
                                             @if ($errors->has('suffix'))
                                                 <span class="invalid-feedback" role="alert">
