@@ -2,12 +2,11 @@
 
 @section('page_level_css')
 
-<link rel="stylesheet"  href="{{url('https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css')}}"/>
-    <link href="{{url('https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/datatable/datatables.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/datatable/dataTables.bootstrap4.min.css') }}"/>
 
     {{-- Export CSS Buttons--}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
-
+    <link rel="stylesheet" href="{{ asset('css/datatable/buttons.dataTables.min.css') }}">
 
 @endsection
 
@@ -97,19 +96,18 @@
 
 @section('page_level_scripts')
 
-    <script src="{{ url('https://code.jquery.com/jquery-3.5.1.js') }}"></script>
-    <script src="{{ url('https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ url('https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js') }}"></script>
-
+    <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Export -->
-    <script src="{{ url('https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ url('https://cdn.datatables.net/buttons/1.6.5/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js') }}"></script>
-    <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js') }}"></script>
-    <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js') }}"></script>
-    <script src="{{ url('https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ url('https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/jszip.min.js') }}"></script>
+    <script src="{{ asset('js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('js/buttons.print.min.js') }}"></script>
 
 
     <script src="{{asset('/js/filter.js')}}"></script>
